@@ -34,6 +34,11 @@ $(document).ready(function(){
         socket.send(JSON.stringify(msg));
 	});
 	
+	$("#accuse").on('click', function(){
+		msg = {'event':'accusation', 'character':'Miss Scarlett', 'weapon':'Knife', 'room':'Study'};
+        socket.send(JSON.stringify(msg));
+	});
+	
 	
 });
 

@@ -31,7 +31,7 @@ def createDeck
   rooms = ['Study', 'Kitchen', 'Hall', 'Conservatory', 'Lounge', 'Ballroom', 'Dining Room', 'Library', 'Billiard Room'].shuffle
 
   # Set the guilty cards and remove them from each "deck"
-  $guilty = {"charachter"=>chars[0], "weapon"=>weapons[0], "room"=>rooms[0]}
+  $guilty = {"character"=>chars[0], "weapon"=>weapons[0], "room"=>rooms[0]}
   chars.delete(chars[0])
   weapons.delete(weapons[0])
   rooms.delete(rooms[0])
@@ -39,7 +39,7 @@ def createDeck
   # Organize the cards and make them pretty
   cards = chars + weapons + rooms
   
-  $cardRef = {"charachters"=>chars, "weapons"=>weapons, "rooms"=>rooms}
+  $cardRef = {"characters"=>chars, "weapons"=>weapons, "rooms"=>rooms}
 
   cards.shuffle #return cards (shuffled)
 end

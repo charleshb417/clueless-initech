@@ -16,6 +16,7 @@
 
           socket.onmessage = function(msg) {
         	  message = JSON.parse(msg.data);
+        	  console.log(message);
         	  if (message['user_update']){
         		  fillWaitingRoom(message['user_update']);
         	  }
@@ -27,6 +28,11 @@
         	  }
         	  if (message['newTurn']){
         		  alert (message['newTurn']);
+        	  }
+        	  if (message['accusation_result'] == true || message['accusation_result'] == false){
+        		  alert (message['accusation_result']);
+        		  var ans = message['answer']['character'] + " with the " + message['answer']['weapon'] + " in the " + message['answer']['room'];
+        		  alert (ans);
         	  }
           }
         } catch(exception) {

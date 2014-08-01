@@ -70,12 +70,25 @@ EM.run do
           send_message(msg.to_json)   
              
         when "suggestion"
-          p "suggest"
           
         when "disprove"
           p "disprove"
         when "accusation"
-          p "accuse"
+          
+          gChar = message['character']
+          gWeap = message['weapon']
+          gRoom = message['room']
+          
+          didWin = false
+          if $guilty['character'] == gChar && $guilty['weapon'] == gWeap && $guilty['room'] == gRoom
+            didWin = true
+          end
+          
+          msg = {}
+          msg['accusation_result'] = didWin
+          msg['answer'] = $guilty
+          
+          send_message(msg.to_json)
         else
           p "Uhh..."
         end
