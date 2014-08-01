@@ -1,4 +1,4 @@
-      var socket, host;
+      var socket, host, message;
       host = "ws://localhost:3001";
 
       function connect() {
@@ -15,7 +15,13 @@
           }
 
           socket.onmessage = function(msg) {
-
+        	  message = JSON.parse(msg.data);
+        	  if (message['user_update']){
+        		  fillWaitingRoom(message['user_update']);
+        	  }
+        	  if (message['start_game']){
+        		  startGame(message['start_game']);
+        	  }
           }
         } catch(exception) {
 

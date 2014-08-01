@@ -41,6 +41,54 @@ def dealCards(cards)
       }  
     end
   end
+
+  user_setup #give each user a character and current room value
+  msg = {}
+  msg['start_game'] = $users
+  
+  $clients.each do |socket|
+   socket.send msg.to_json
+  end  
+end
+
+def add_user(user)
+  $users[user] = {}
+  $users.to_json
+  
+  msg = {}
+  msg['user_update'] = $users
+  
+  $clients.each do |socket|
+   socket.send msg.to_json
+  end
   
 end
+
+def remove_user(user)
+  p "removing user " + user
+  $users.delete(user)
+  $users.to_json
+  
+  msg = {}
+  msg['user_update'] = $users
+  
+  $clients.each do |socket|
+   socket.send msg.to_json
+  end
+  
+end
+
+def user_setup
+  chars = ['Miss Scarlett', 'Colonel Mustard', 'Mrs. White', 'Mr. Green', 'Mrs. Peacock', 'Professor Plumb'].shuffle
+  rooms = ['Study', 'Kitchen', 'Hall', 'Conservatory', 'Lounge', 'Ballroom', 'Dining Room', 'Library', 'Billiard Room'].shuffle
+
+  $users.each{ |key, user|
+    $users[key]['character'] = chars[0]
+    $users[key]['currentRoom'] = rooms[0]
+    
+    chars.delete(chars[0])
+    rooms.delete(rooms[0])
+  }
+end
+
 
