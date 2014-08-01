@@ -22,7 +22,16 @@ $(document).ready(function(){
 	$("#removeUsr").click(function(){
 		msg = {'event':'remove_user', 'username':user};
         socket.send(JSON.stringify(msg));
-        alert ("Button Clicked.");
+	});
+	
+	$("#movePlayer").click(function(){
+		msg = {'event':'move', 'user':user, 'newRoom':'Kitchen'};
+        socket.send(JSON.stringify(msg));
+	});
+	
+	$("#changeTurn").on('click', function(){
+		msg = {'event':'turnSwitch'};
+        socket.send(JSON.stringify(msg));
 	});
 	
 	
@@ -48,6 +57,9 @@ function startGame(users){
 	html = "Your cards are: " + JSON.stringify(cards) + "<br/>";
 	html += "You are playing as: " + char + "<br/>";
 	html += "You are currently in the " + room + "<br/>";
+	
+	$("#userList").addClass("hidden");
+	$("#gameBoard").removeClass("hidden");
 
-	$("#waiting_room").html(html);
+	$("#dynamicBoard").html(html);
 }

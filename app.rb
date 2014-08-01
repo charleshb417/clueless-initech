@@ -15,8 +15,10 @@ EM.run do
   end
 
   $clients = []
+  
 
   EM::WebSocket.start(:host => '0.0.0.0', :port => '3001') do |ws|
+    
     ws.onopen do |handshake|
       $clients << ws
     end
@@ -27,26 +29,46 @@ EM.run do
 
     ws.onmessage do |msg|
       
-      $clients.each do |socket|
-        socket.send msg
-      end
-      
       # parse the message. Message will say stuff like "player moved", "deal cards", "suggestion made"
       message = JSON.parse(msg)
       p message
       if message.include?('event')
         case message['event']
         when "add_user"
+          
           add_user(message['username'])
+          
         when "remove_user"
+          
           remove_user(message['username'])
+          
         when "deal"
           #deal cards and create guilty triple
+          setLegalRooms
           dealCards(createDeck)
-        when "move"
-        
-        when "turnSwitch"
           
+        when "move"
+          user = message['user']
+          newRoom = message['newRoom']
+          canMove = move_player(user, newRoom)
+          msg = {}
+          msg['user'] = user
+          msg['move_reply'] = canMove
+          
+          send_message(msg.to_json)   
+             
+        when "turnSwitch"
+          players = $users.keys
+          tmpTurn = $currentTurn
+          
+          indexVal = players.index(tmpTurn) + 1
+          indexVal = 0 if indexVal >= players.length
+
+          $currentTurn = players[indexVal]
+          msg = {}
+          msg['newTurn'] = $currentTurn
+          send_message(msg.to_json)   
+             
         when "suggestion"
           p "suggest"
           

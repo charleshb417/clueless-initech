@@ -22,6 +22,12 @@
         	  if (message['start_game']){
         		  startGame(message['start_game']);
         	  }
+        	  if (message['move_reply']){
+        		  alert (message['move_reply']);
+        	  }
+        	  if (message['newTurn']){
+        		  alert (message['newTurn']);
+        	  }
           }
         } catch(exception) {
 

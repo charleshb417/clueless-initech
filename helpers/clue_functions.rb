@@ -1,6 +1,25 @@
 $guilty = {}
-#$users = {'jovan'=>{}, 'jon'=>{}, 'charlie'=>{}}
 $cardRef = {}
+$legalRooms = {}
+
+def send_message(msg)
+    $clients.each do |socket|
+      socket.send msg
+    end
+end
+  
+def setLegalRooms
+  #TO DO: figure out actual legal rooms/halls and such
+  $legalRooms['Study'] = ['Study', 'Kitchen', 'Hall', 'Conservatory', 'Lounge', 'Ballroom', 'Dining Room', 'Library', 'Billiard Room']
+  $legalRooms['Kitchen'] = ['Study', 'Kitchen', 'Hall', 'Conservatory', 'Lounge', 'Ballroom', 'Dining Room', 'Library', 'Billiard Room']
+  $legalRooms['Hall'] = ['Study', 'Kitchen', 'Hall', 'Conservatory', 'Lounge', 'Ballroom', 'Dining Room', 'Library', 'Billiard Room']
+  $legalRooms['Conservatory'] = ['Study', 'Kitchen', 'Hall', 'Conservatory', 'Lounge', 'Ballroom', 'Dining Room', 'Library', 'Billiard Room']
+  $legalRooms['Lounge'] = ['Study', 'Kitchen', 'Hall', 'Conservatory', 'Lounge', 'Ballroom', 'Dining Room', 'Library', 'Billiard Room']
+  $legalRooms['Ballroom'] = ['Study', 'Kitchen', 'Hall', 'Conservatory', 'Lounge', 'Ballroom', 'Dining Room', 'Library', 'Billiard Room']
+  $legalRooms['Dining Room'] = ['Study', 'Kitchen', 'Hall', 'Conservatory', 'Lounge', 'Ballroom', 'Dining Room', 'Library', 'Billiard Room']
+  $legalRooms['Library'] = ['Study', 'Kitchen', 'Hall', 'Conservatory', 'Lounge', 'Ballroom', 'Dining Room', 'Library', 'Billiard Room']
+  $legalRooms['Billiard Room'] = ['Study', 'Kitchen', 'Hall', 'Conservatory', 'Lounge', 'Ballroom', 'Dining Room', 'Library', 'Billiard Room']
+end
 
 def createDeck
   
@@ -46,9 +65,7 @@ def dealCards(cards)
   msg = {}
   msg['start_game'] = $users
   
-  $clients.each do |socket|
-   socket.send msg.to_json
-  end  
+  send_message(msg.to_json)   
 end
 
 def add_user(user)
@@ -58,10 +75,7 @@ def add_user(user)
   msg = {}
   msg['user_update'] = $users
   
-  $clients.each do |socket|
-   socket.send msg.to_json
-  end
-  
+  send_message(msg.to_json)   
 end
 
 def remove_user(user)
@@ -72,10 +86,7 @@ def remove_user(user)
   msg = {}
   msg['user_update'] = $users
   
-  $clients.each do |socket|
-   socket.send msg.to_json
-  end
-  
+  send_message(msg.to_json)   
 end
 
 def user_setup
@@ -89,6 +100,19 @@ def user_setup
     chars.delete(chars[0])
     rooms.delete(rooms[0])
   }
+  
+  $currentTurn = $users.keys[0] #current user's turn
+end
+
+def move_player(user, newRoom)
+  currentRoom = $users[user]['currentRoom']
+  playerCanMove = false
+  if $legalRooms[currentRoom].include?(newRoom)
+    $users[user]['currentRoom'] = newRoom
+    playerCanMove = true
+  end
+  
+  playerCanMove #return true or false
 end
 
 
