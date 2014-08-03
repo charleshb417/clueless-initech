@@ -88,6 +88,7 @@ EM.run do
           msg['user'] = message['user']
           
           send_message(msg.to_json)
+          
         when "disprove"
           gChar = message['character']
           gWeap = message['weapon']
@@ -104,11 +105,13 @@ EM.run do
           msg["disprover"] = message['disproover'] # who disproved
           msg["disprovee"] = message['disprovee'] # who is being disproved?
           send_message(msg.to_json)
+        
         when "accusation"
           
           gChar = message['character']
           gWeap = message['weapon']
           gRoom = message['room']
+          user = message['user']
           
           didWin = false
           if $guilty['character'] == gChar && $guilty['weapon'] == gWeap && $guilty['room'] == gRoom
@@ -118,12 +121,15 @@ EM.run do
           msg = {}
           msg['accusation_result'] = didWin
           msg['answer'] = $guilty
+          msg['user'] = user
           
           send_message(msg.to_json)
+        
         when "notify"
           note = message['note']
           playerList = message['playerList']
           notify_players(playerList, note)
+        
         when "get_users"
           msg = {}
           msg["user_update"] = $users
