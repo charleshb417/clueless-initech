@@ -39,6 +39,10 @@
             		  alert (message['notify_message']);
         		  }
         	  }
+        	  if (message['suggestion_made']){
+        		  var sug = message['user'] + " suggested it was " + message['suggestion_made']['character'] + " with the " + message['suggestion_made']['weapon'] + " in the " + message['suggestion_made']['room'];
+        		  alert (sug);
+        	  }
           }
         } catch(exception) {
 

@@ -1,4 +1,5 @@
 def init_globals
+  $users = {}
   $guilty = {}
   $cardRef = {}
   $legalRooms = {}

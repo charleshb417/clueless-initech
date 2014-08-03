@@ -4,7 +4,6 @@ require 'sinatra/base'
 require 'json'
 require './helpers/clue_functions'
 
-$users = {}
 init_globals
 
 EM.run do
@@ -16,6 +15,11 @@ EM.run do
     get '/remove_user' do
       user = params[:user]
       remove_user(user)
+    end
+    
+    get '/reset' do
+      init_globals
+      p "Game reset."
     end
   end
 
@@ -75,9 +79,31 @@ EM.run do
           send_message(msg.to_json)   
              
         when "suggestion"
+          gChar = message['character']
+          gWeap = message['weapon']
+          gRoom = message['room']
           
+          msg = {}
+          msg['suggestion_made'] = {"character"=>gChar, "weapon"=>gWeap, "room"=>gRoom}
+          msg['user'] = message['user']
+          
+          send_message(msg.to_json)
         when "disprove"
-          p "disprove"
+          gChar = message['character']
+          gWeap = message['weapon']
+          gRoom = message['room']
+          item = message['disproveItem']
+          
+          disproved = false
+          if item == gChar || item == gWeap || item == gRoom
+            disproved = true
+          end
+          
+          msg = {}
+          msg["is_disproved"] = disproved
+          msg["disprover"] = message['disproover'] # who disproved
+          msg["disprovee"] = message['disprovee'] # who is being disproved?
+          send_message(msg.to_json)
         when "accusation"
           
           gChar = message['character']
@@ -98,6 +124,10 @@ EM.run do
           note = message['note']
           playerList = message['playerList']
           notify_players(playerList, note)
+        when "get_users"
+          msg = {}
+          msg["user_update"] = $users
+          send_message(msg.to_json)
         else
           p "Uhh..."
         end

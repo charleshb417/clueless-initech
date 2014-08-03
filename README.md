@@ -35,13 +35,25 @@ b) Send Message- {"user":"user to move", "move_reply":"a boolean true false if t
 a) Receive Message- {"event":"turn_switch"}
 b) Send Message- {"newTurn":"user"}
 
-6) Accusation - Player make's an accusation and the server determines if correct
+6) Suggestion - Player make's a suggestion
+a) Receive Message- {"event":"suggestion", "user":"user1", "character":"character","weapon":"weapon","room":"room"}
+b) Send Message- {"suggestion_made":{"charachter":"Char", "weapon":"Weapon", "room":"room"}, "user":"User1"}
+
+7) Disprove a suggestion
+a) Receive Message- {"event":"suggestion", "disprover":"User1", "disprovee":"player who made suggestion", "character":"character","weapon":"weapon","room":"room", "disproveItem":"item"}
+b) Send Message- {"is_disproved":boolean, "disprover":"User1", "disprovee":"player who made suggestion"}
+
+8) Accusation - Player make's an accusation and the server determines if correct
 a) Receive Message- {"event":"accusation", "character":"character","weapon":"weapon","room":"room"}
 b) Send Message- {"accusation_result":"boolean if right or not", "answer":a hash of guilty cards**}
 
-6) Notification - Client sends a notification to the server
+9) Notification - Client sends a notification to the server
 a) Receive Message- {"event":"notify", "playerList":["player1", "player2"],"note":"This is a note"}
 b) Send Message- {"notify_players":["player1", "player2"], "notify_message":"This is a note"}
+
+10) Reset Character List - Reset character list to easily get cards, player locations, etc.
+a) Receive Message- {"event":"get_users"}
+b) Send Message- {"user_update":a hash of users*}
 
 * Character Hash- Not completely designed yet but contains all user information. More details next commit
 ** Guilty hash- {"character":"character","weapon":"weapon","room":"room"}
