@@ -39,6 +39,10 @@ $(document).ready(function(){
         socket.send(JSON.stringify(msg));
 	});
 	
+	$("#gameBoard").on('click', '#notifyBtn', function(){
+		msg = {'event':'notify', 'playerList':[user], 'note':'This is a test note.'};
+        socket.send(JSON.stringify(msg));
+	});
 	
 });
 

@@ -1,11 +1,20 @@
-$guilty = {}
-$cardRef = {}
-$legalRooms = {}
+def init_globals
+  $guilty = {}
+  $cardRef = {}
+  $legalRooms = {}
+end
 
 def send_message(msg)
     $clients.each do |socket|
       socket.send msg
     end
+end
+
+def notify_players(playerList, note)
+  msg = {}
+  msg['notify_players'] = playerList
+  msg['notify_message'] = note
+  send_message(msg.to_json)
 end
   
 def setLegalRooms
@@ -65,7 +74,7 @@ def dealCards(cards)
   msg = {}
   msg['start_game'] = $users
   
-  send_message(msg.to_json)   
+  send_message(msg.to_json) 
 end
 
 def add_user(user)
@@ -86,7 +95,9 @@ def remove_user(user)
   msg = {}
   msg['user_update'] = $users
   
-  send_message(msg.to_json)   
+  send_message(msg.to_json)  
+  
+  init_globals if $users.length == 0 #reset the service
 end
 
 def user_setup

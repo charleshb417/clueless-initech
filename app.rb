@@ -5,6 +5,7 @@ require 'json'
 require './helpers/clue_functions'
 
 $users = {}
+init_globals
 
 EM.run do
   class App < Sinatra::Base
@@ -12,6 +13,10 @@ EM.run do
       erb :index
     end
     
+    get '/remove_user' do
+      user = params[:user]
+      remove_user(user)
+    end
   end
 
   $clients = []
@@ -89,6 +94,10 @@ EM.run do
           msg['answer'] = $guilty
           
           send_message(msg.to_json)
+        when "notify"
+          note = message['note']
+          playerList = message['playerList']
+          notify_players(playerList, note)
         else
           p "Uhh..."
         end

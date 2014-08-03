@@ -34,6 +34,11 @@
         		  var ans = message['answer']['character'] + " with the " + message['answer']['weapon'] + " in the " + message['answer']['room'];
         		  alert (ans);
         	  }
+        	  if (message['notify_message']){
+        		  if (message['notify_players'].indexOf(user) > -1){
+            		  alert (message['notify_message']);
+        		  }
+        	  }
           }
         } catch(exception) {
 
