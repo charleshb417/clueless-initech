@@ -39,6 +39,9 @@ b) Send Message- {"newTurn":"user"}
 a) Receive Message- {"event":"accusation", "character":"character","weapon":"weapon","room":"room"}
 b) Send Message- {"accusation_result":"boolean if right or not", "answer":a hash of guilty cards**}
 
+6) Notification - Client sends a notification to the server
+a) Receive Message- {"event":"notify", "playerList":["player1", "player2"],"note":"This is a note"}
+b) Send Message- {"notify_players":["player1", "player2"], "notify_message":"This is a note"}
 
 * Character Hash- Not completely designed yet but contains all user information. More details next commit
 ** Guilty hash- {"character":"character","weapon":"weapon","room":"room"}
