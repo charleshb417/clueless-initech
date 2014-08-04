@@ -8,6 +8,8 @@ init_globals
 
 EM.run do
   class App < Sinatra::Base
+    set :bind, '0.0.0.0'
+    
     get '/' do
       erb :index
     end
