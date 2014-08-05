@@ -5,7 +5,9 @@ def init_globals
   $legalRooms = {}
 end
 
-def send_message(msg)
+def send_message(event, msg)
+    msg['event'] = event
+    msg = msg.to_json
     $clients.each do |socket|
       socket.send msg
     end
@@ -15,11 +17,12 @@ def notify_players(playerList, note)
   msg = {}
   msg['notify_players'] = playerList
   msg['notify_message'] = note
-  send_message(msg.to_json)
+  send_message('notification', msg)
 end
   
 def setLegalRooms
   #TO DO: figure out actual legal rooms/halls and such
+  
   $legalRooms['Study'] = ['Study', 'Kitchen', 'Hall', 'Conservatory', 'Lounge', 'Ballroom', 'Dining Room', 'Library', 'Billiard Room']
   $legalRooms['Kitchen'] = ['Study', 'Kitchen', 'Hall', 'Conservatory', 'Lounge', 'Ballroom', 'Dining Room', 'Library', 'Billiard Room']
   $legalRooms['Hall'] = ['Study', 'Kitchen', 'Hall', 'Conservatory', 'Lounge', 'Ballroom', 'Dining Room', 'Library', 'Billiard Room']
@@ -75,7 +78,7 @@ def dealCards(cards)
   msg = {}
   msg['start_game'] = $users
   
-  send_message(msg.to_json) 
+  send_message('start_game', msg) 
 end
 
 def add_user(user)
@@ -85,7 +88,7 @@ def add_user(user)
   msg = {}
   msg['user_update'] = $users
   
-  send_message(msg.to_json)   
+  send_message('user_update', msg)   
 end
 
 def remove_user(user)
@@ -96,7 +99,7 @@ def remove_user(user)
   msg = {}
   msg['user_update'] = $users
   
-  send_message(msg.to_json)  
+  send_message('user_update', msg)  
   
   init_globals if $users.length == 0 #reset the service
 end

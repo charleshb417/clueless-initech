@@ -20,6 +20,8 @@ EM.run do
     end
     
     get '/reset' do
+      # TO DO : SEND MESSAGE BEFORE CLEARING GLOBALS
+      
       init_globals
       p "Game reset."
     end
@@ -66,7 +68,7 @@ EM.run do
           msg['user'] = user
           msg['move_reply'] = canMove
           
-          send_message(msg.to_json)   
+          send_message('player_move', msg)   
              
         when "turnSwitch"
           players = $users.keys
@@ -77,8 +79,8 @@ EM.run do
 
           $currentTurn = players[indexVal]
           msg = {}
-          msg['newTurn'] = $currentTurn
-          send_message(msg.to_json)   
+          msg['new_turn'] = $currentTurn
+          send_message('new_turn', msg)   
              
         when "suggestion"
           gChar = message['character']
@@ -89,7 +91,7 @@ EM.run do
           msg['suggestion_made'] = {"character"=>gChar, "weapon"=>gWeap, "room"=>gRoom}
           msg['user'] = message['user']
           
-          send_message(msg.to_json)
+          send_message('suggestion', msg)
           
         when "disprove"
           gChar = message['character']
@@ -106,7 +108,7 @@ EM.run do
           msg["is_disproved"] = disproved
           msg["disprover"] = message['disproover'] # who disproved
           msg["disprovee"] = message['disprovee'] # who is being disproved?
-          send_message(msg.to_json)
+          send_message('disprove', msg)
         
         when "accusation"
           
@@ -125,7 +127,7 @@ EM.run do
           msg['answer'] = $guilty
           msg['user'] = user
           
-          send_message(msg.to_json)
+          send_message('accusation_result', msg)
         
         when "notify"
           note = message['note']
@@ -135,7 +137,8 @@ EM.run do
         when "get_users"
           msg = {}
           msg["user_update"] = $users
-          send_message(msg.to_json)
+          send_message('reset', msg)
+        
         else
           p "Uhh..."
         end
