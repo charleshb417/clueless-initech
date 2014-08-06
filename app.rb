@@ -41,7 +41,8 @@ EM.run do
     end
 
     ws.onmessage do |msg|
-      
+      begin 
+
       # parse the message. Message will say stuff like "player moved", "deal cards", "suggestion made"
       message = JSON.parse(msg)
       p message
@@ -142,6 +143,9 @@ EM.run do
         else
           p "Uhh..."
         end
+      end
+      rescue
+        p "There has been an error."
       end
     end
   end
