@@ -68,6 +68,7 @@ EM.run do
           msg = {}
           msg['user'] = user
           msg['move_reply'] = canMove
+          msg['user_obj'] = $users
           
           send_message('player_move', msg)   
              

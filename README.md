@@ -28,12 +28,12 @@ a) Receive Message- {"event":"deal"}
 b) Send Message- {"event":"start_game", "start_game":a hash of users with a 'cards' key for each user}
 
 4) Move a player - Server will handle what location all users are at
-a) Receive Message- {"event":"move", "newRoom":"room to move to"}
-b) Send Message- {"event":"player_move", "user":"user to move", "move_reply":"a boolean true false if the player can move"}
+a) Receive Message- {"event":"move", "user":user ,"newRoom":"room to move to"}
+b) Send Message- {"event":"player_move", "user":"user to move", "move_reply":"a boolean true false if the player can move", "user_obj":users hash with updated rooms}
 
 5) Switch the player's turn - Server will handle who's turn it is and return it to the users. Client will tell Server to switch turn by invoking this
 a) Receive Message- {"event":"turn_switch"}
-b) Send Message- {"event":"new_turn", "newTurn":"user"}
+b) Send Message- {"event":"new_turn", "new_turn":"user"}
 
 6) Suggestion - Player make's a suggestion
 a) Receive Message- {"event":"suggestion", "user":"user1", "character":"character", "weapon":"weapon", "room":"room"}
