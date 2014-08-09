@@ -61,7 +61,7 @@ b) Send Message- {"event":"reset", "user_update":a hash of users*}
 
 Legal Rooms (Names appear as they do in the code)
 
-  <Rooms>
+  -Rooms
   Study = StudyHall, StudyLibrary
   Kitchen = BallroomKitchen, DiningKitchen
   Hall = StudyHall, HallLounge, HallBilliard
@@ -72,7 +72,7 @@ Legal Rooms (Names appear as they do in the code)
   Library = StudyLibrary, LibraryConservatory, LibraryBilliard
   Billiard = LibraryBilliard, HallBilliard, BilliardDining, BilliardBallroom
 
-  <Halls>
+  -Halls
   StudyHall = Study, Hall
   HallLounge = Hall, Lounge
   LibraryBilliard = Library, Billiard
