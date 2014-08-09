@@ -61,27 +61,47 @@ b) Send Message- {"event":"reset", "user_update":a hash of users*}
 
 Legal Rooms (Names appear as they do in the code)
 
-  -Rooms
-  Study = StudyHall, StudyLibrary
-  Kitchen = BallroomKitchen, DiningKitchen
-  Hall = StudyHall, HallLounge, HallBilliard
-  Conservatory = LibraryConservatory, ConservatoryBallroom
-  Lounge = HallLounge, LoungeDining
-  Ballroom = ConservatoryBallroom, BilliardBallroom, BallroomKitchen
-  Dining = DiningKitchen, BilliardDining, LoungeDining
-  Library = StudyLibrary, LibraryConservatory, LibraryBilliard
-  Billiard = LibraryBilliard, HallBilliard, BilliardDining, BilliardBallroom
+  Rooms
+  1)Study = StudyHall, StudyLibrary
+  
+  2)Kitchen = BallroomKitchen, DiningKitchen
+  
+  3)Hall = StudyHall, HallLounge, HallBilliard
+  
+  4)Conservatory = LibraryConservatory, ConservatoryBallroom
+  
+  5)Lounge = HallLounge, LoungeDining
+  
+  6)Ballroom = ConservatoryBallroom, BilliardBallroom, BallroomKitchen
+  
+  7)Dining = DiningKitchen, BilliardDining, LoungeDining
+  
+  8)Library = StudyLibrary, LibraryConservatory, LibraryBilliard
+  
+  9)Billiard = LibraryBilliard, HallBilliard, BilliardDining, BilliardBallroom
 
-  -Halls
-  StudyHall = Study, Hall
-  HallLounge = Hall, Lounge
-  LibraryBilliard = Library, Billiard
-  BilliardDining = Billiard, Dining
-  ConservatoryBallroom = Conservatory, Ballroom
-  BallroomKitchen = Ballroom, Kitchen
-  StudyLibrary = Study, Library
-  LibraryConservatory = Library, Conservatory
-  HallBilliard = Hall, Billiard
-  BilliardBallroom = Billiard, Ballroom
-  LoungeDining = Lounge, Dining
-  DiningKitchen = Dining, Kitchen
+
+  Halls
+  1)StudyHall = Study, Hall
+  
+  2)HallLounge = Hall, Lounge
+  
+  3)LibraryBilliard = Library, Billiard
+  
+  4)BilliardDining = Billiard, Dining
+  
+  5)ConservatoryBallroom = Conservatory, Ballroom
+  
+  6)BallroomKitchen = Ballroom, Kitchen
+  
+  7)StudyLibrary = Study, Library
+  
+  8)LibraryConservatory = Library, Conservatory
+  
+  9)HallBilliard = Hall, Billiard
+  
+  10)BilliardBallroom = Billiard, Ballroom
+  
+  11)LoungeDining = Lounge, Dining
+  
+  12)DiningKitchen = Dining, Kitchen
