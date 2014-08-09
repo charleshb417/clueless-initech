@@ -57,3 +57,31 @@ b) Send Message- {"event":"reset", "user_update":a hash of users*}
 
 * Character Hash- Not completely designed yet but contains all user information. More details next commit
 ** Guilty hash- {"character":"character","weapon":"weapon","room":"room"}
+
+
+Legal Rooms (Names appear as they do in the code)
+
+  <Rooms>
+  Study = StudyHall, StudyLibrary
+  Kitchen = BallroomKitchen, DiningKitchen
+  Hall = StudyHall, HallLounge, HallBilliard
+  Conservatory = LibraryConservatory, ConservatoryBallroom
+  Lounge = HallLounge, LoungeDining
+  Ballroom = ConservatoryBallroom, BilliardBallroom, BallroomKitchen
+  Dining = DiningKitchen, BilliardDining, LoungeDining
+  Library = StudyLibrary, LibraryConservatory, LibraryBilliard
+  Billiard = LibraryBilliard, HallBilliard, BilliardDining, BilliardBallroom
+
+  <Halls>
+  StudyHall = Study, Hall
+  HallLounge = Hall, Lounge
+  LibraryBilliard = Library, Billiard
+  BilliardDining = Billiard, Dining
+  ConservatoryBallroom = Conservatory, Ballroom
+  BallroomKitchen = Ballroom, Kitchen
+  StudyLibrary = Study, Library
+  LibraryConservatory = Library, Conservatory
+  HallBilliard = Hall, Billiard
+  BilliardBallroom = Billiard, Ballroom
+  LoungeDining = Lounge, Dining
+  DiningKitchen = Dining, Kitchen
