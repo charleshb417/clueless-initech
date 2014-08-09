@@ -21,17 +21,32 @@ def notify_players(playerList, note)
 end
   
 def setLegalRooms
-  #TO DO: figure out actual legal rooms/halls and such
   
-  $legalRooms['Study'] = ['Study', 'Kitchen', 'Hall', 'Conservatory', 'Lounge', 'Ballroom', 'Dining Room', 'Library', 'Billiard Room']
-  $legalRooms['Kitchen'] = ['Study', 'Kitchen', 'Hall', 'Conservatory', 'Lounge', 'Ballroom', 'Dining Room', 'Library', 'Billiard Room']
-  $legalRooms['Hall'] = ['Study', 'Kitchen', 'Hall', 'Conservatory', 'Lounge', 'Ballroom', 'Dining Room', 'Library', 'Billiard Room']
-  $legalRooms['Conservatory'] = ['Study', 'Kitchen', 'Hall', 'Conservatory', 'Lounge', 'Ballroom', 'Dining Room', 'Library', 'Billiard Room']
-  $legalRooms['Lounge'] = ['Study', 'Kitchen', 'Hall', 'Conservatory', 'Lounge', 'Ballroom', 'Dining Room', 'Library', 'Billiard Room']
-  $legalRooms['Ballroom'] = ['Study', 'Kitchen', 'Hall', 'Conservatory', 'Lounge', 'Ballroom', 'Dining Room', 'Library', 'Billiard Room']
-  $legalRooms['Dining Room'] = ['Study', 'Kitchen', 'Hall', 'Conservatory', 'Lounge', 'Ballroom', 'Dining Room', 'Library', 'Billiard Room']
-  $legalRooms['Library'] = ['Study', 'Kitchen', 'Hall', 'Conservatory', 'Lounge', 'Ballroom', 'Dining Room', 'Library', 'Billiard Room']
-  $legalRooms['Billiard Room'] = ['Study', 'Kitchen', 'Hall', 'Conservatory', 'Lounge', 'Ballroom', 'Dining Room', 'Library', 'Billiard Room']
+  #Rooms
+  $legalRooms['Study'] = ['StudyHall', 'StudyLibrary']
+  $legalRooms['Kitchen'] = ['BallroomKitchen', 'DiningKitchen']
+  $legalRooms['Hall'] = ['StudyHall', 'HallLounge', 'HallBilliard']
+  $legalRooms['Conservatory'] = ['LibraryConservatory', 'ConservatoryBallroom']
+  $legalRooms['Lounge'] = ['HallLounge', 'LoungeDining']
+  $legalRooms['Ballroom'] = ['ConservatoryBallroom', 'BilliardBallroom', 'BallroomKitchen']
+  $legalRooms['Dining'] = ['DiningKitchen', 'BilliardDining', 'LoungeDining']
+  $legalRooms['Library'] = ['StudyLibrary', 'LibraryConservatory', 'LibraryBilliard']
+  $legalRooms['Billiard'] = ['LibraryBilliard', 'HallBilliard', 'BilliardDining', 'BilliardBallroom']
+
+  # Halls
+  $legalRooms['StudyHall'] = ['Study', 'Hall']
+  $legalRooms['HallLounge'] = ['Hall', 'Lounge']
+  $legalRooms['LibraryBilliard'] = ['Library', 'Billiard']
+  $legalRooms['BilliardDining'] = ['Billiard', 'Dining']
+  $legalRooms['ConservatoryBallroom'] = ['Conservatory', 'Ballroom']
+  $legalRooms['BallroomKitchen'] = ['Ballroom', 'Kitchen']
+  $legalRooms['StudyLibrary'] = ['Study', 'Library']
+  $legalRooms['LibraryConservatory'] = ['Library', 'Conservatory']
+  $legalRooms['HallBilliard'] = ['Hall', 'Billiard']
+  $legalRooms['BilliardBallroom'] = ['Billiard', 'Ballroom']
+  $legalRooms['LoungeDining'] = ['Lounge', 'Dining']
+  $legalRooms['DiningKitchen'] = ['Dining', 'Kitchen']
+ 
 end
 
 def createDeck
@@ -41,7 +56,7 @@ def createDeck
   #Initialize the values for each set of cards and shuffle them
   chars = ['Miss Scarlett', 'Colonel Mustard', 'Mrs. White', 'Mr. Green', 'Mrs. Peacock', 'Professor Plumb'].shuffle
   weapons = ['Candlestick', 'Wrench', 'Revolver', 'Knife', 'Rope', 'Lead Pipe'].shuffle
-  rooms = ['Study', 'Kitchen', 'Hall', 'Conservatory', 'Lounge', 'Ballroom', 'Dining Room', 'Library', 'Billiard Room'].shuffle
+  rooms = ['Study', 'Kitchen', 'Hall', 'Conservatory', 'Lounge', 'Ballroom', 'Dining', 'Library', 'Billiard'].shuffle
 
   # Set the guilty cards and remove them from each "deck"
   $guilty = {"character"=>chars[0], "weapon"=>weapons[0], "room"=>rooms[0]}
