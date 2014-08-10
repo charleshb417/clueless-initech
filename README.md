@@ -40,7 +40,7 @@ a) Receive Message- {"event":"suggestion", "user":"user1", "character":"characte
 b) Send Message- {"event":"suggestion_made", "suggestion_made":{"charachter":"Char", "weapon":"Weapon", "room":"room"}, "user":"User1"}
 
 7) Disprove a suggestion
-a) Receive Message- {"event":"suggestion", "disprover":"User1", "disprovee":"player who made suggestion", "character":"character","weapon":"weapon","room":"room", "disproveItem":"item"}
+a) Receive Message- {"event":"disprove", "disprover":"User1", "disproveItem":"item"}
 b) Send Message- {"event":"disprove", "is_disproved":boolean, "disprover":"User1", "disprovee":"player who made suggestion"}
 
 8) Accusation - Player make's an accusation and the server determines if correct
@@ -53,7 +53,7 @@ b) Send Message- {"event":"notification", "notify_players":["player1", "player2"
 
 10) Reset Character List - Reset character list to easily get cards, player locations, etc.
 a) Receive Message- {"event":"get_users"}
-b) Send Message- {"event":"reset", "user_update":a hash of users*}
+b) Send Message- {"event":"user_list", "user_update":a hash of users*}
 
 * Character Hash- Not completely designed yet but contains all user information. More details next commit
 ** Guilty hash- {"character":"character","weapon":"weapon","room":"room"}

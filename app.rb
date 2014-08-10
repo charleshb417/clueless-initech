@@ -72,7 +72,7 @@ EM.run do
           
           send_message('player_move', msg)   
              
-        when "turnSwitch"
+        when "turn_switch"
           players = $users.keys
           tmpTurn = $currentTurn
           
@@ -96,22 +96,15 @@ EM.run do
           send_message('suggestion', msg)
           
         when "disprove"
-          gChar = message['character']
-          gWeap = message['weapon']
-          gRoom = message['room']
+
           item = message['disproveItem']
-          
-          disproved = false
-          if item == gChar || item == gWeap || item == gRoom
-            disproved = true
-          end
-          
+          disprover = message['disproover']
+          disproved = true
+ 
           msg = {}
-          msg["is_disproved"] = disproved
-          msg["disprover"] = message['disproover'] # who disproved
-          msg["disprovee"] = message['disprovee'] # who is being disproved?
-          send_message('disprove', msg)
-        
+          note = disprover + " has disproved the suggestion with the " + item + "."
+          notify_players($users.keys, note)
+          
         when "accusation"
           
           gChar = message['character']
@@ -139,7 +132,7 @@ EM.run do
         when "get_users"
           msg = {}
           msg["user_update"] = $users
-          send_message('reset', msg)
+          send_message('user_list', msg)
         
         else
           p "Uhh..."
