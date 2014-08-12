@@ -37,11 +37,11 @@ b) Send Message- {"event":"new_turn", "new_turn":"user"}
 
 6) Suggestion - Player make's a suggestion
 a) Receive Message- {"event":"suggestion", "user":"user1", "character":"character", "weapon":"weapon", "room":"room"}
-b) Send Message- {"event":"suggestion_made", "suggestion_made":{"charachter":"Char", "weapon":"Weapon", "room":"room"}, "user":"User1"}
+b) Send Message- {"event":"suggestion_made", "first_disprover":player to make first disprove, "suggestion_made":{"charachter":"Char", "weapon":"Weapon", "room":"room"}, "user":"User1"}
 
 7) Disprove a suggestion
-a) Receive Message- {"event":"disprove", "disprover":"User1", "disproveItem":"item"}
-b) Send Message- {"event":"disprove", "is_disproved":boolean, "disprover":"User1", "disprovee":"player who made suggestion"}
+a) Receive Message- {"event":"disprove", "disproover":"User1", "disproveItem":"item"}
+b) Send Message- {"event":"disprove_reply", "next_turn":next player to disprove; will return false once it reaches the suggestion maker}
 
 8) Accusation - Player make's an accusation and the server determines if correct
 a) Receive Message- {"event":"accusation", "character":"character", "weapon":"weapon", "room":"room", "user":"user making accusation"}

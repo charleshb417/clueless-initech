@@ -46,6 +46,9 @@
         		  var sug = message['user'] + " suggested it was " + message['suggestion_made']['character'] + " with the " + message['suggestion_made']['weapon'] + " in the " + message['suggestion_made']['room'];
         		  alert (sug);
         	  }
+        	  if (message['event'] == 'disprove_reply'){
+        		  alert (message['next_turn']);
+        	  }
           }
         } catch(exception) {
 

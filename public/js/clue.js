@@ -49,6 +49,11 @@ $(document).ready(function(){
         socket.send(JSON.stringify(msg));
 	});
 	
+	$("#gameBoard").on('click', '#disproveBtn', function(){ alert ("Yahoo.");
+		msg = {'event':'disprove', 'disproveItem':false, 'disproover':'charlie'};
+        socket.send(JSON.stringify(msg));
+	});
+	
 });
 
 

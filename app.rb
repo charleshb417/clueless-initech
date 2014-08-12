@@ -89,9 +89,14 @@ EM.run do
           gWeap = message['weapon']
           gRoom = message['room']
           
+          players = $users.keys
+          indexVal = players.index($currentTurn) + 1
+          indexVal = 0 if indexVal >= players.length
+          
           msg = {}
           msg['suggestion_made'] = {"character"=>gChar, "weapon"=>gWeap, "room"=>gRoom}
           msg['user'] = message['user']
+          msg['first_disprover'] = players[indexVal]
           
           send_message('suggestion', msg)
           
@@ -99,11 +104,27 @@ EM.run do
 
           item = message['disproveItem']
           disprover = message['disproover']
-          disproved = true
+          players = $users.keys
  
-          msg = {}
-          note = disprover + " has disproved the suggestion with the " + item + "."
-          notify_players($users.keys, note)
+          if item != false
+            note = disprover + " has disproved the suggestion with the " + item + "."
+            returnVal = false
+          else
+            indexVal = players.index(disprover) + 1
+            indexVal = 0 if indexVal >= players.length
+            if players[indexVal] != $currentTurn
+              note = disprover + " was not able to disprove the suggestion. It is now " + players[indexVal] + "'s turn to disprove."
+              returnVal = players[indexVal]
+            else
+              note = disprover + " was not able to disprove the suggestion. Nobody was able to disprove."
+              returnVal = false
+            end
+          end
+          
+          #notify client of who's turn to disprove it is
+          notify_players(players, note)
+          msg = {'next_turn'=>returnVal}
+          send_message('disprove_reply', msg)
           
         when "accusation"
           
