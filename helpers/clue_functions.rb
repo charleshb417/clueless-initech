@@ -23,29 +23,29 @@ end
 def setLegalRooms
   
   #Rooms
-  $legalRooms['Study'] = ['StudyHall', 'StudyLibrary']
-  $legalRooms['Kitchen'] = ['BallroomKitchen', 'DiningKitchen']
-  $legalRooms['Hall'] = ['StudyHall', 'HallLounge', 'HallBilliard']
-  $legalRooms['Conservatory'] = ['LibraryConservatory', 'ConservatoryBallroom']
-  $legalRooms['Lounge'] = ['HallLounge', 'LoungeDining']
-  $legalRooms['Ballroom'] = ['ConservatoryBallroom', 'BilliardBallroom', 'BallroomKitchen']
-  $legalRooms['Dining'] = ['DiningKitchen', 'BilliardDining', 'LoungeDining']
-  $legalRooms['Library'] = ['StudyLibrary', 'LibraryConservatory', 'LibraryBilliard']
-  $legalRooms['Billiard'] = ['LibraryBilliard', 'HallBilliard', 'BilliardDining', 'BilliardBallroom']
+  $legalRooms['study'] = ['studyhall', 'studylibrary', 'lounge']
+  $legalRooms['kitchen'] = ['ballroomkitchen', 'diningkitchen', 'conservatory']
+  $legalRooms['hall'] = ['studyhall', 'halllounge', 'hallbilliard']
+  $legalRooms['conservatory'] = ['libraryconservatory', 'conservatoryballroom', 'kitchen']
+  $legalRooms['lounge'] = ['halllounge', 'loungedining', 'study']
+  $legalRooms['ballroom'] = ['conservatoryballroom', 'billiardballroom', 'ballroomkitchen']
+  $legalRooms['dining'] = ['diningkitchen', 'billiarddining', 'loungedining']
+  $legalRooms['library'] = ['studylibrary', 'libraryconservatory', 'librarybilliard']
+  $legalRooms['billiard'] = ['librarybilliard', 'hallbilliard', 'billiarddining', 'billiardballroom']
 
   # Halls
-  $legalRooms['StudyHall'] = ['Study', 'Hall']
-  $legalRooms['HallLounge'] = ['Hall', 'Lounge']
-  $legalRooms['LibraryBilliard'] = ['Library', 'Billiard']
-  $legalRooms['BilliardDining'] = ['Billiard', 'Dining']
-  $legalRooms['ConservatoryBallroom'] = ['Conservatory', 'Ballroom']
-  $legalRooms['BallroomKitchen'] = ['Ballroom', 'Kitchen']
-  $legalRooms['StudyLibrary'] = ['Study', 'Library']
-  $legalRooms['LibraryConservatory'] = ['Library', 'Conservatory']
-  $legalRooms['HallBilliard'] = ['Hall', 'Billiard']
-  $legalRooms['BilliardBallroom'] = ['Billiard', 'Ballroom']
-  $legalRooms['LoungeDining'] = ['Lounge', 'Dining']
-  $legalRooms['DiningKitchen'] = ['Dining', 'Kitchen']
+  $legalRooms['studyhall'] = ['study', 'hall']
+  $legalRooms['halllounge'] = ['hall', 'lounge']
+  $legalRooms['librarybilliard'] = ['library', 'billiard']
+  $legalRooms['billiarddining'] = ['billiard', 'dining']
+  $legalRooms['conservatoryballroom'] = ['conservatory', 'ballroom']
+  $legalRooms['ballroomkitchen'] = ['ballroom', 'kitchen']
+  $legalRooms['studylibrary'] = ['study', 'library']
+  $legalRooms['libraryconservatory'] = ['library', 'conservatory']
+  $legalRooms['hallbilliard'] = ['hall', 'billiard']
+  $legalRooms['billiardballroom'] = ['billiard', 'ballroom']
+  $legalRooms['loungedining'] = ['lounge', 'dining']
+  $legalRooms['diningkitchen'] = ['dining', 'kitchen']
  
 end
 
@@ -54,7 +54,7 @@ def createDeck
   cards = []
   
   #Initialize the values for each set of cards and shuffle them
-  chars = ['Miss Scarlett', 'Colonel Mustard', 'Mrs. White', 'Mr. Green', 'Mrs. Peacock', 'Professor Plumb'].shuffle
+  chars = ['Miss Scarlet', 'Colonel Mustard', 'Mrs. White', 'Mr. Green', 'Mrs. Peacock', 'Professor Plum'].shuffle
   weapons = ['Candlestick', 'Wrench', 'Revolver', 'Knife', 'Rope', 'Lead Pipe'].shuffle
   rooms = ['Study', 'Kitchen', 'Hall', 'Conservatory', 'Lounge', 'Ballroom', 'Dining', 'Library', 'Billiard'].shuffle
 
@@ -120,7 +120,7 @@ def remove_user(user)
 end
 
 def user_setup
-  chars = ['Miss Scarlett', 'Colonel Mustard', 'Mrs. White', 'Mr. Green', 'Mrs. Peacock', 'Professor Plumb'].shuffle
+  chars = ['Miss Scarlet', 'Colonel Mustard', 'Mrs. White', 'Mr. Green', 'Mrs. Peacock', 'Professor Plum'].shuffle
   rooms = ['Study', 'Kitchen', 'Hall', 'Conservatory', 'Lounge', 'Ballroom', 'Dining Room', 'Library', 'Billiard Room'].shuffle
 
   $users.each{ |key, user|
@@ -137,7 +137,7 @@ end
 def move_player(user, newRoom)
   currentRoom = $users[user]['currentRoom']
   playerCanMove = false
-  if $legalRooms[currentRoom].include?(newRoom)
+  if $legalRooms[currentRoom.downcase].include?(newRoom.downcase)
     $users[user]['currentRoom'] = newRoom
     playerCanMove = true
   end

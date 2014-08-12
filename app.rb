@@ -113,7 +113,7 @@ EM.run do
           user = message['user']
           
           didWin = false
-          if $guilty['character'] == gChar && $guilty['weapon'] == gWeap && $guilty['room'] == gRoom
+          if $guilty['character'].downcase == gChar.downcase && $guilty['weapon'].downcase == gWeap.downcase && $guilty['room'].downcase == gRoom.downcase
             didWin = true
           end
           
