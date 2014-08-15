@@ -125,15 +125,14 @@ end
 
 def user_setup
   chars = ['Colonel Mustard', 'Mrs. White', 'Mr. Green', 'Mrs. Peacock', 'Professor Plum'].shuffle
-  rooms = ['Study', 'Kitchen', 'Hall', 'Conservatory', 'Lounge', 'Ballroom', 'Dining Room', 'Library', 'Billiard Room'].shuffle
+  char_rooms = {'Miss Scarlet'=>'HallLounge', 'Colonel Mustard'=>'LoungeDining', 'Mrs. White'=>'BallroomKitchen', 'Mr. Green'=>'ConservatoryBallroom', 'Mrs. Peacock'=>'HallBilliard', 'Professor Plum'=>'StudyLibrary'}
 
   chars.unshift('Miss Scarlet')
   $users.each{ |key, user|
     $users[key]['character'] = chars[0]
-    $users[key]['currentRoom'] = rooms[0]
+    $users[key]['currentRoom'] = char_rooms[chars[0]]
     
     chars.delete(chars[0])
-    rooms.delete(rooms[0])
   }
   
   $currentTurn = $users.keys[0] #current user's turn
