@@ -82,6 +82,8 @@ EM.run do
           $currentTurn = players[indexVal]
           msg = {}
           msg['new_turn'] = $currentTurn
+          msg['character'] = $users[$currentTurn]['character']
+          p msg
           send_message('new_turn', msg)   
              
         when "suggestion"

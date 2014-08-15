@@ -30,7 +30,7 @@ $(document).ready(function(){
 	});
 	
 	$("#changeTurn").on('click', function(){
-		msg = {'event':'turnSwitch'};
+		msg = {'event':'turn_switch'};
         socket.send(JSON.stringify(msg));
 	});
 	
