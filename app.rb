@@ -153,6 +153,8 @@ EM.run do
         when "get_users"
           msg = {}
           msg["user_update"] = $users
+          msg['users_list'] = $users.keys
+
           send_message('user_list', msg)
         
         else

@@ -116,7 +116,8 @@ def remove_user(user)
   
   msg = {}
   msg['user_update'] = $users
-  
+  msg['users_list'] = $users.keys
+
   send_message('user_update', msg)  
   
   init_globals if $users.length == 0 #reset the service
