@@ -17,7 +17,7 @@ b) Send Message - The message that will be sent to the client, if anything. This
   
 1) Adding a user - Add a user to the session.
 a) Receive Message- {"event":"add_user", "username":"user"}
-b) Send Message- {"event":"user_update", "user_update":a hash of users*}
+b) Send Message- {"event":"user_update", "user_update":a hash of users*, "users_list":a list of users}
 
 2) Remove a user - Remove a user from the session. Unlikely this will be used for the presentation
 a) Receive Message- {"event":"remove_user", "username":"user"}
