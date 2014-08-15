@@ -92,6 +92,8 @@ def dealCards(cards)
   user_setup #give each user a character and current room value
   msg = {}
   msg['start_game'] = $users
+  msg['users_list'] = $users.keys
+
   
   send_message('start_game', msg) 
 end

@@ -25,7 +25,7 @@ b) Send Message- {"event":"user_update", "user_update":a hash of users}
 
 3) Deal the cards - Server will deal cards and return each user object with what cards they have. Signifies game beginning
 a) Receive Message- {"event":"deal"}
-b) Send Message- {"event":"start_game", "start_game":a hash of users with a 'cards' key for each user}
+b) Send Message- {"event":"start_game", "start_game":a hash of users with a 'cards' key for each user, "users_list":a list of users}
 
 4) Move a player - Server will handle what location all users are at
 a) Receive Message- {"event":"move", "user":user ,"newRoom":"room to move to"}
