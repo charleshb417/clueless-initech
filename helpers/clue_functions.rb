@@ -123,9 +123,10 @@ def remove_user(user)
 end
 
 def user_setup
-  chars = ['Miss Scarlet', 'Colonel Mustard', 'Mrs. White', 'Mr. Green', 'Mrs. Peacock', 'Professor Plum'].shuffle
+  chars = ['Colonel Mustard', 'Mrs. White', 'Mr. Green', 'Mrs. Peacock', 'Professor Plum'].shuffle
   rooms = ['Study', 'Kitchen', 'Hall', 'Conservatory', 'Lounge', 'Ballroom', 'Dining Room', 'Library', 'Billiard Room'].shuffle
 
+  chars.unshift('Miss Scarlet')
   $users.each{ |key, user|
     $users[key]['character'] = chars[0]
     $users[key]['currentRoom'] = rooms[0]
