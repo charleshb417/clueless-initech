@@ -93,8 +93,9 @@ def dealCards(cards)
   msg = {}
   msg['start_game'] = $users
   msg['users_list'] = $users.keys
-
-  
+  msg['user'] = $users[$users.keys[0]]['character']
+  msg['move_reply'] = false
+  p msg['user']
   send_message('start_game', msg) 
 end
 
