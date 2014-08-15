@@ -142,6 +142,7 @@ EM.run do
           
           msg = {}
           msg['accusation_result'] = didWin
+          msg['accusation_made'] = {"character"=>gChar, "weapon"=>gWeap, "room"=>gRoom}
           msg['answer'] = $guilty
           msg['user'] = user
           
