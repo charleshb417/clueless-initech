@@ -23,11 +23,11 @@ end
 def setLegalRooms
   
   #Rooms
-  $legalRooms['study'] = ['studyhall', 'studylibrary', 'lounge']
-  $legalRooms['kitchen'] = ['ballroomkitchen', 'diningkitchen', 'conservatory']
+  $legalRooms['study'] = ['studyhall', 'studylibrary', 'kitchen']
+  $legalRooms['kitchen'] = ['ballroomkitchen', 'diningkitchen', 'study']
   $legalRooms['hall'] = ['studyhall', 'halllounge', 'hallbilliard']
-  $legalRooms['conservatory'] = ['libraryconservatory', 'conservatoryballroom', 'kitchen']
-  $legalRooms['lounge'] = ['halllounge', 'loungedining', 'study']
+  $legalRooms['conservatory'] = ['libraryconservatory', 'conservatoryballroom', 'lounge']
+  $legalRooms['lounge'] = ['halllounge', 'loungedining', 'conservatory']
   $legalRooms['ballroom'] = ['conservatoryballroom', 'billiardballroom', 'ballroomkitchen']
   $legalRooms['dining'] = ['diningkitchen', 'billiarddining', 'loungedining']
   $legalRooms['library'] = ['studylibrary', 'libraryconservatory', 'librarybilliard']
