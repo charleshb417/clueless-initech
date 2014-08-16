@@ -112,6 +112,8 @@ EM.run do
               msg = {}
               msg['user'] = user
               msg['move_reply'] = true
+              
+              $users[user]['currentRoom'] = newRoom
               msg['user_obj'] = $users
           
               send_message('player_move', msg)        
