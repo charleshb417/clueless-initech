@@ -126,7 +126,7 @@ end
 
 def user_setup
   chars = ['Colonel Mustard', 'Mrs. White', 'Mr. Green', 'Mrs. Peacock', 'Professor Plum'].shuffle
-  char_rooms = {'Miss Scarlet'=>'HallLounge', 'Colonel Mustard'=>'LoungeDining', 'Mrs. White'=>'BallroomKitchen', 'Mr. Green'=>'ConservatoryBallroom', 'Mrs. Peacock'=>'HallBilliard', 'Professor Plum'=>'StudyLibrary'}
+  char_rooms = {'Miss Scarlet'=>'HallLounge', 'Colonel Mustard'=>'LoungeDining', 'Mrs. White'=>'BallroomKitchen', 'Mr. Green'=>'ConservatoryBallroom', 'Mrs. Peacock'=>'LibraryConservatory', 'Professor Plum'=>'StudyLibrary'}
 
   chars.unshift('Miss Scarlet')
   $users.each{ |key, user|
