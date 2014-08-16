@@ -45,7 +45,7 @@ $(document).ready(function(){
 	});
 	
 	$("#gameBoard").on('click', '#suggestBtn', function(){
-		msg = {'event':'suggestion', 'user':user, 'character':'Miss Scarlett', 'weapon':'Knife', 'room':'Study'};
+		msg = {'event':'suggestion', 'user':user, 'character':'Miss Scarlet', 'weapon':'Knife', 'room':'Study'};
         socket.send(JSON.stringify(msg));
 	});
 	

@@ -102,15 +102,30 @@ EM.run do
           
           send_message('suggestion', msg)
           
+          ## Move suggested player
+          $users.each{ |key, usr|
+            if usr['character'] == gChar
+            
+              user = key
+              newRoom = usr['currentRoom']
+              msg = {}
+              msg['user'] = user
+              msg['move_reply'] = true
+              msg['user_obj'] = $users
+          
+              send_message('player_move', msg)        
+            end
+          }
+                 
         when "disprove"
 
           item = message['disproveItem']
           disprover = message['disproover']
           players = $users.keys
  
-          if item != false
-            note = disprover + " has disproved the suggestion with the " + item + "."
-            returnVal = false
+          if item != "false"
+            note = disprover + " has disproved the suggestion with the " + item + " card."
+            returnVal = "false"
           else
             indexVal = players.index(disprover) + 1
             indexVal = 0 if indexVal >= players.length
@@ -119,7 +134,7 @@ EM.run do
               returnVal = players[indexVal]
             else
               note = disprover + " was not able to disprove the suggestion. Nobody was able to disprove."
-              returnVal = false
+              returnVal = "false"
             end
           end
           
