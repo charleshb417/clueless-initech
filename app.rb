@@ -45,6 +45,7 @@ EM.run do
 
       # parse the message. Message will say stuff like "player moved", "deal cards", "suggestion made"
       message = JSON.parse(msg)
+      p "Message Recieved: "
       p message
       if message.include?('event')
         case message['event']
@@ -107,7 +108,7 @@ EM.run do
             if usr['character'] == gChar
             
               user = key
-              newRoom = usr['currentRoom']
+              newRoom = $users[message['user']]['currentRoom']
               msg = {}
               msg['user'] = user
               msg['move_reply'] = true

@@ -11,6 +11,9 @@ def send_message(event, msg)
     $clients.each do |socket|
       socket.send msg
     end
+    
+    p "Message Sent: " 
+    p msg
 end
 
 def notify_players(playerList, note)
