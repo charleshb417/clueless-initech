@@ -60,6 +60,9 @@ def createDeck
 
   # Set the guilty cards and remove them from each "deck"
   $guilty = {"character"=>chars[0], "weapon"=>weapons[0], "room"=>rooms[0]}
+  p "The guilty cards are: "
+  p $guilty
+  
   chars.delete(chars[0])
   weapons.delete(weapons[0])
   rooms.delete(rooms[0])
